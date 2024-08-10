@@ -2,3 +2,10 @@
  * Debug mode: off
  * Serving Flask app 'Emotion Detection'
  * Debug mode: off
+[main 7fcb14b] added server.py to deploy the application
+ 5 files changed, 37 insertions(+)
+ create mode 100644 popd
+ create mode 100644 return
+ create mode 100644 server.py
+ create mode 100644 true
+ create mode 100644 umask
