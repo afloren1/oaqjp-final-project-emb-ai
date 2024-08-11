@@ -7,10 +7,13 @@ app = Flask("Emotion Detection")
 def sent_detection():
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detection(text_to_analyze)
-    emotions_only = {k: v for k, v in response.items() if k != 'dominant_emotion'}
-    dominant_emotion = max(emotions_only, key=emotions_only.get)
-    emotions_str = ', '.join(f"'{k}': {v}" for k, v in emotions_only.items())       
-    return "For the given statement, the system response is {}. The dominant emotion is <b>{}</b>".format(
+    emotions_only = {k: v for k, v in response.items() if k != 'dominant_emotion' and v is not None}
+    if not emotions_only: 
+       return "Invalid text! Please try again!" 
+    else:        
+       dominant_emotion = max(emotions_only, key=emotions_only.get)
+       emotions_str = ', '.join(f"'{k}': {v}" for k, v in emotions_only.items())
+       return "For the given statement, the system response is {}. The dominant emotion is <b>{}</b>".format(
     emotions_str, dominant_emotion
     )
 
